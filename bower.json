@@ -1,0 +1,24 @@
+{
+  "name": "br-radio-button",
+  "version": "1.0.0",
+  "homepage": "https://github.com/bed-rock/br-radio-button",
+  "authors": [
+    "cbfranca <cleidsonbf@gmail.com>"
+  ],
+  "description": "",
+  "main": "br-radio-button.html",
+  "moduleType": [],
+  "keywords": [
+    "bedrock.radiobutton",
+    "webcomponent",
+    "polymer"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
