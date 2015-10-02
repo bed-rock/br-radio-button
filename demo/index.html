@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>br-checkable</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link rel="stylesheet" href="../../bedrock/dist/css/style.css">
+
+	<link rel="import" type="html" href="../../polymer/polymer.html">
+	<script src="../../webcomponentsjs/webcomponents-lite.min.js"></script>
+	<link rel="import" href="../src/br-radio-button.html">
+
+</head>
+<body>
+
+	<div class="container">
+
+		<br><br>
+
+		<h1>br-radio-button <small>example</small></h1>
+
+		<!--
+		Usage:
+		Tag: <br-checkable></br-checkable>
+		Attributes:
+			br-id: String;
+			br-name: String, In case of radio group;
+			label: String;
+			required: Boolean;
+			errorMessage: String;
+		-->
+		
+		<h2>Radio group</h2>
+
+		<br-radio-button br-id="radioGroup01" br-name="group" br-value="option01" label="Radio group test 01" inline></br-radio-button>
+		<br-radio-button br-id="radioGroup02" br-name="group" br-value="option02" label="Radio group test 02" inline></br-radio-button>
+
+	</div>
+
+</body>
+</html>
