@@ -20,7 +20,8 @@
 		      brValue: String,
 		      model: {
 		        type: String,
-		        reflectToAttribute: true
+		        reflectToAttribute: true,
+            observer: '_checkIfTrue'
 		      },
 		      inline: Boolean,
 		      checked: Boolean,
@@ -50,7 +51,11 @@
 
 		    _bindValue: function(event){
 		    	this.model = event.target.value;
-		    }
+		    },
+		    _checkIfTrue: function() {
+          if (this.brValue == this.model){
+            this.checked = true;
+          }
 		});
 	</script>
 </dom-module>
