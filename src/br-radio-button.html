@@ -1,7 +1,7 @@
 <dom-module id="br-radio-button">
 	<template>
 		<div class="form_field">
-			<input type="radio" id$="{{brId}}" name$="{{brName}}" value$="{{brValue}}" on-click="_bindValue" checked$="{{checked}}">
+			<input type="radio" id$="{{brId}}" name$="{{brName}}" value$="{{brValue}}" on-click="_setModel" checked$="{{checked}}">
 
 			<label for$="{{brId}}">{{label}}</label>
 			<template is="dom-if" if="{{hasError}}">
@@ -21,7 +21,7 @@
 		      model: {
 		        type: String,
 		        reflectToAttribute: true,
-            observer: '_checkIfTrue'
+            observer: '_modelChanged'
 		      },
 		      inline: Boolean,
 		      checked: Boolean,
@@ -34,10 +34,7 @@
 		      this.hasError = false;
 		      var formField = this.$$('.form_field');
 
- 	          formField.classList.add('radio');
-
-		      if ( this.inline )
-		        formField.classList.add('inline');
+          formField.classList.add('radio');
 
 		      if ( this.required && this.errorMessage ) {
 		        formField.classList.add('is-invalid');
@@ -49,13 +46,15 @@
 		      }
 		    },
 
-		    _bindValue: function(event){
+		    _setModel: function(event){
 		    	this.model = event.target.value;
 		    },
-		    _checkIfTrue: function() {
+
+		    _modelChanged: function() {
           if (this.brValue == this.model){
             this.checked = true;
           }
+        }
 		});
 	</script>
 </dom-module>
