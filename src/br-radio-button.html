@@ -1,61 +1,68 @@
 <dom-module id="br-radio-button">
-	<template>
-		<div class="form_field">
-			<input type="radio" id$="{{brId}}" name$="{{brName}}" value="{{brValue}}" on-click="_setModel" checked$="{{checked}}">
+<template>
+	<div class="form_field">
+		<input type="radio" id$="{{brId}}" name$="{{brName}}" value="{{brValue}}" on-click="_setModel" checked$="{{checked}}">
 
-			<label for$="{{brId}}">{{label}}</label>
-			<template is="dom-if" if="{{hasError}}">
-				<p class="form_field--error">{{errorMessage}}</p>
-			</template>
-		</div>
-	</template>
-	<script>
-		Polymer({
-			is: 'br-radio-button',
+		<label for$="{{brId}}">{{label}}</label>
+		<template is="dom-if" if="{{hasError}}">
+			<p class="form_field--error">{{errorMessage}}</p>
+		</template>
+	</div>
+</template>
+<script>
+	Polymer({
+		is: 'br-radio-button',
 
-			 properties: {
-		      label: String,
-		      brName: String,
-		      brId: String,
-		      brValue: String,
-		      model: {
-		        type: String,
-		        reflectToAttribute: true,
-            observer: '_modelChanged'
-		      },
-		      inline: Boolean,
-		      checked: Boolean,
-		      required: Boolean,
-		      errorMessage: String,
-		    },
+		properties: {
+			label: String,
+			brName: String,
+			brId: String,
+			brValue: String,
+			model: {
+				type: String,
+				reflectToAttribute: true,
+				observer: '_modelChanged'
+			},
+			inline: Boolean,
+			checked: Boolean,
+			required: Boolean,
+			errorMessage: String,
+		},
 
-		     ready: function () {
+		ready: function () {
 
-		      this.hasError = false;
-		      var formField = this.$$('.form_field');
+			this.hasError = false;
+			
+			if(this.required)
+				this.isValidForm = false;
+			else
+				this.isValidForm = true;
 
-          formField.classList.add('radio');
+			var formField = this.$$('.form_field');
 
-		      if ( this.required && this.errorMessage ) {
-		        formField.classList.add('is-invalid');
-		        this.hasError = true;
-		      }
-		      else if ( this.hasAttribute('is-invalid') ) {
-		        formField.classList.remove('is-invalid');
-		        this.hasError = false;
-		      }
-		    },
+			formField.classList.add('radio');			
 
-		    _setModel: function(event){
-		    	this.model = event.target.value;
-		    },
+			if ( this.required && this.errorMessage ) {
+				formField.classList.add('is-invalid');
+				this.hasError = true;
+			}
+			else if ( this.hasAttribute('is-invalid') ) {
+				formField.classList.remove('is-invalid');
+				this.hasError = false;
+			}
+		},
 
-		    _modelChanged: function() {
-          if (this.brValue == this.model){
-            this.checked = true;
-          }
-		    }
+		_setModel: function(event){
+			this.model = event.target.value;
+		},
 
-		});
-	</script>
+		_modelChanged: function() {
+			if (this.brValue == this.model) {
+				this.checked = true;
+				this.isValidForm = true;
+			}
+		}
+
+	});
+</script>
 </dom-module>
