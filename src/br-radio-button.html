@@ -56,12 +56,14 @@
 			this.model = event.target.value;
 		},
 
-		_modelChanged: function() {
-			if (this.brValue == this.model) {
-				this.checked = true;
-				this.isValidForm = true;
-			}
-			this.fire('on-radio-button-selected');
+		_modelChanged: function () {
+			this.async(function () {
+				if (this.brValue == this.model) {
+					this.checked = true;
+					this.isValidForm = true;
+				}
+				this.fire('on-radio-button-selected');
+			}, 1);
 		}
 
 	});
