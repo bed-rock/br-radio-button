@@ -1,7 +1,7 @@
 <dom-module id="br-radio-button">
 <template>
 	<div class="form_field">
-		<input type="radio" id$="{{brId}}" name$="{{brName}}" value="{{brValue}}" on-click="_setModel" checked$="{{checked}}">
+		<input type="radio" id$="{{brId}}" name$="{{brName}}" value="{{brValue}}" on-click="_setModel" checked$="{{checked}}" disabled$="{{disabled}}"> 
 
 		<label for$="{{brId}}">{{label}}</label>
 		<template is="dom-if" if="{{hasError}}">
@@ -27,6 +27,7 @@
 			checked: Boolean,
 			required: Boolean,
 			errorMessage: String,
+			disabled: Boolean
 		},
 
 		ready: function () {
